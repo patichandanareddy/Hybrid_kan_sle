@@ -91,9 +91,7 @@ with torch.no_grad():
     stress_kan = model(X).numpy().flatten()
     stress_total = stress_sle + stress_kan
 
-# =====================================================
-# 7. Paper-quality plot
-# =====================================================
+
 plt.figure(figsize=(7,5))
 plt.scatter(lambda_exp, stress_exp, c="black", s=45, label="Experiment", zorder=3)
 plt.plot(lambda_exp, stress_sle, "--", linewidth=2, label="SLE")
