@@ -286,14 +286,6 @@ def train_case(mode, regime_name, gamma):
     return metrics_out
 
 
-# ── Main ─────────────────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    all_metrics = {}
-    for mode in ["uniaxial", "biaxial", "planar"]:
-        for regime_name, cfg in REGIMES.items():
-            k = f"{mode}_{regime_name}"
-            all_metrics[k] = train_case(mode, regime_name, cfg["gamma"])
-
     print("\n" + "="*60)
     print("FINAL SUMMARY")
     print("="*60)
