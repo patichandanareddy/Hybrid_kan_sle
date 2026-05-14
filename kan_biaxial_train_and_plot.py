@@ -65,18 +65,7 @@ loss_fn = torch.nn.MSELoss()
 
 loss_hist = []
 
-for step in range(4000):
-    optimizer.zero_grad()
-    loss = loss_fn(model(X), Y)
-    loss.backward()
-    optimizer.step()
-    loss_hist.append(loss.item())
 
-    if step % 500 == 0:
-        print(f"[Biaxial] step {step}, loss = {loss.item():.3e}")
-
-torch.save(model.state_dict(), "kan_biaxial.pt")
-np.savetxt("kan_biaxial_loss.txt", np.array(loss_hist))
 
 # =====================================================
 # 5. Final prediction
@@ -85,9 +74,6 @@ with torch.no_grad():
     stress_kan = model(X).numpy().flatten()
     stress_total = stress_sle + stress_kan
 
-# =====================================================
-# 6. Paper-quality plot
-# =====================================================
 plt.figure(figsize=(7,5))
 plt.scatter(lambda_exp, stress_exp, c="black", s=45, label="Experiment", zorder=3)
 plt.plot(lambda_exp, stress_sle, "--", linewidth=2, label="SLE")
