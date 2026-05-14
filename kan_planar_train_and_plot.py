@@ -65,18 +65,7 @@ loss_fn = torch.nn.MSELoss()
 
 loss_hist = []
 
-for step in range(3000):
-    optimizer.zero_grad()
-    loss = loss_fn(model(X), Y)
-    loss.backward()
-    optimizer.step()
-    loss_hist.append(loss.item())
 
-    if step % 500 == 0:
-        print(f"[Planar] step {step}, loss = {loss.item():.3e}")
-
-torch.save(model.state_dict(), "kan_planar.pt")
-np.savetxt("kan_planar_loss.txt", np.array(loss_hist))
 
 # =====================================================
 # 5. Final prediction
